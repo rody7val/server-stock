@@ -48,12 +48,12 @@ exports.add = (req, res) => {
 // PUT
 exports.update = (req, res) => {
   Item.findById(req.params.id, (err, item) => {
-    item.name: req.body.name,
-    item.price: req.body.price,
-    item.qty: req.body.qty,
-    item.img: req.body.img,
-    item.desc: req.body.desc,
-    item.category: req.body.category
+    item.name = req.body.name
+    item.price = req.body.price
+    item.qty = req.body.qty
+    item.img = req.body.img
+    item.desc = req.body.desc
+    item.category = req.body.category
   })
 
   item.save((err, item) => {

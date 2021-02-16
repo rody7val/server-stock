@@ -8,13 +8,26 @@ app.use(bodyParser.urlencoded({ extended: false }))
 app.use(bodyParser.json())
 app.use(methodOverride())
 
-const router = express.Router()
+const routerHome = express.Router()
+const routerApi = express.Router()
+const itemsCtrl = require('./controllers/items');
 
-router.get('/', (req, res) => {
+// Home Documentation
+routerHome.get('/', (req, res) => {
   res.send('Hi')
 })
 
-app.use(router)
+// API REST
+routerApi.route('/items')
+ .get(itemsCtrl.findAll)
+ .post(itemsCtrl.add)
+routerApi.route('/items/:id')
+  .get(itemsCtrl.findById)
+  .put(itemsCtrl.update)
+  .delete(itemsCtrl.delete)
+
+app.use('/', routerHome)
+app.use('/api', routerApi);
 
 db.connect('mongodb://localhost/stock', (err, res) => {
   if (err) {
