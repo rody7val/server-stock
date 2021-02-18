@@ -5,10 +5,10 @@ exports.findAll = (req, res) => {
   Item.find((err, items) => {
     if (err) {
       return res.status(500)
-        .json({ success: false, data: err.message })
+        .json({ success: false, error: err.message })
     }
     res.status(200)
-      .json({ success: true, data: items })
+      .json({ success: true, items: items })
   })
 }
 
@@ -17,10 +17,10 @@ exports.findById = (req, res) => {
   Item.findById(req.params.id, (err, item) => {
     if (err) {
       return res.status(500)
-        .json({ success: false, data: err.message })
+        .json({ success: false, error: err.message })
     }
     res.status(200)
-      .json({ success: true, data: item })
+      .json({ success: true, item: item })
   })
 }
 
@@ -38,10 +38,10 @@ exports.add = (req, res) => {
   item.save((err, item) => {
     if (err) {
       return res.status(500)
-        .json({ success: false, data: err.message })
+        .json({ success: false, error: err.message })
     }
     res.status(200)
-      .json({ success: true, data: item })
+      .json({ success: true, item: item })
   })
 }
 
@@ -59,10 +59,10 @@ exports.update = (req, res) => {
   item.save((err, item) => {
     if (err) {
       return res.status(500)
-        .json({ success: false, data: err.message })
+        .json({ success: false, error: err.message })
     }
     res.status(200)
-      .json({ success: true, data: item })
+      .json({ success: true, item: item })
   });
 };
 
@@ -72,7 +72,7 @@ exports.delete = (req, res) => {
     item.remove(err => {
       if (err) {
         return res.status(500)
-          .json({ success: false, data: err.message })
+          .json({ success: false, error: err.message })
       }
       res.status(200)
         .json({ success: true })
