@@ -22,7 +22,7 @@ const development = (cb) => {
     './*.js'
   ], {
     events: 'all',
-    ignoreInitial: false 
+    ignoreInitial: false
   }, server)
 
   cb()

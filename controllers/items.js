@@ -4,8 +4,13 @@ const Item = require('../models/item')
 exports.findAll = (req, res) => {
   Item.find((err, items) => {
     if (err) {
-      return res.status(500)
-        .json({ success: false, error: err.message })
+      return res.status(200).json({
+        success: false, 
+        error: {
+          errors: { items: { message: "Ningun item" } },
+          message: err.message
+        }
+      })
     }
     res.status(200)
       .json({ success: true, items: items })
@@ -16,8 +21,13 @@ exports.findAll = (req, res) => {
 exports.findById = (req, res) => {
   Item.findById(req.params.id, (err, item) => {
     if (err) {
-      return res.status(500)
-        .json({ success: false, error: err.message })
+      return res.status(200).json({
+        success: false, 
+        error: {
+          errors: { item: { message: "No existe éste item" } },
+          message: err.message
+        }
+      })
     }
     res.status(200)
       .json({ success: true, item: item })
@@ -37,8 +47,13 @@ exports.add = (req, res) => {
 
   item.save((err, item) => {
     if (err) {
-      return res.status(500)
-        .json({ success: false, error: err.message })
+      return res.status(200).json({
+        success: false, 
+        error: {
+          errors: { item: { message: "No se pudo crear" } },
+          message: err.message
+        }
+      })
     }
     res.status(200)
       .json({ success: true, item: item })
@@ -58,8 +73,13 @@ exports.update = (req, res) => {
 
   item.save((err, item) => {
     if (err) {
-      return res.status(500)
-        .json({ success: false, error: err.message })
+      return res.status(200).json({
+        success: false, 
+        error: {
+          errors: { item: { message: "No se pudo guardar los cambios" } },
+          message: err.message
+        }
+      })
     }
     res.status(200)
       .json({ success: true, item: item })
@@ -70,10 +90,15 @@ exports.update = (req, res) => {
 exports.delete = (req, res) => {
   Item.findById(req.params.id, (err, item) => {
     item.remove(err => {
-      if (err) {
-        return res.status(500)
-          .json({ success: false, error: err.message })
-      }
+    if (err) {
+      return res.status(200).json({
+        success: false, 
+        error: {
+          errors: { item: { message: "No se pudo borrar" } },
+          message: err.message
+        }
+      })
+    }
       res.status(200)
         .json({ success: true })
     })
