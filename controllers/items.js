@@ -36,13 +36,13 @@ exports.findById = (req, res) => {
 
 // POST
 exports.add = (req, res) => {
-  var item = new Item({
+  let item = new Item({
     name: req.body.name,
     price: req.body.price,
     qty: req.body.qty,
-    img: req.body.img,
     desc: req.body.desc,
-    category: req.body.category
+    category: req.body.category,
+    img: req.body.img
   })
 
   item.save((err, item) => {

@@ -1,5 +1,3 @@
-const mongoose = require('mongoose')
-const assert = require('assert')
 const service = require('../services')
 const User = require('../models/user')
 

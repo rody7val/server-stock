@@ -5,9 +5,9 @@ const Item = new Schema({
   name: String,
   price: Number,
   qty: Number,
-  img: Number,
   desc: String,
   category: String,
+  img: String,
   created: { type: Number, default: Date.now }
 })
 
