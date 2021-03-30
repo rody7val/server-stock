@@ -1,4 +1,4 @@
-const { watch, series } = require('gulp')
+const { watch } = require('gulp')
 const spawn = require('child_process').spawn
 let node
 
